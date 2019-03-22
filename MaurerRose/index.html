@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>
+  <script src="js/app.js"></script>
+
+  <title>Maurer Rose</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #232323;
+    }
+    .center {
+      text-align: center;
+    }
+    .text-box, button {
+      padding: 8px;
+      font-size: 1.2rem;
+    }
+
+    button {
+      border-color: #9395D3;
+      border-style: solid;
+      background-color: #9395D3;
+    }
+  </style>
+</head>
+<body>
+  <div id="canvasHolder" class="center"></div>
+  <div style="padding: 32px;" class="center">
+    <input class="text-box" type="number" value="5" name="" id="n">
+    <input class="text-box" type="number" value="97" name="" id="d">
+
+    <button id="start">Do it!</button>
+  </div>
+</body>
+</html>
