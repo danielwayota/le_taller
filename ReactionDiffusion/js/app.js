@@ -2,7 +2,7 @@
  * Reaction diffusion docs: http://karlsims.com/rd.html
  */
 
-const stuff = []
+const main = []
 const next = []
 
 function setup() {
@@ -10,14 +10,14 @@ function setup() {
   canvas.parent('#canvasHolder')
 
   for (let i = 0; i < width*height; i++) {
-    stuff.push({ a: 1, b: 0})
+    main.push({ a: 1, b: 0})
     next.push({ a: 1, b: 0})
   }
 
   // Seed
-  seed(50, 50, 10, stuff)
-  seed(100, 100, 10, stuff)
-  seed(150, 150, 10, stuff)
+  seed(50, 50, 10, main)
+  seed(100, 100, 10, main)
+  seed(150, 150, 10, main)
 }
 /**
  * Fills a quad 
@@ -85,11 +85,11 @@ function draw() {
       for (let y = 1; y < height-1; y++) {
         const i = x + (y * width)
   
-        const A = stuff[i].a
-        const B = stuff[i].b
+        const A = main[i].a
+        const B = main[i].b
   
         // Reaction-Diffusion formula
-        const L = laplace(x, y, stuff)
+        const L = laplace(x, y, main)
         next[i] = {
           a: A +
             (da * L.a) -
@@ -102,18 +102,19 @@ function draw() {
         }
       }
     }
+
+    // Swap
+    for (let i = 0; i < width*height; i++) {
+      main[i] = {...next[i]}
+    }
   }
 
-  // Swap
-  for (let i = 0; i < width*height; i++) {
-    stuff[i] = {...next[i]}
-  }
 
   if ((currentFrame % drawingFrame) === 0) {
     // Draw to screen
     loadPixels()
     for (let i = 0; i < width*height; i++) {
-      const { a, b } = stuff[i]
+      const { a, b } = main[i]
       const index = i * 4
       pixels[index + 0] = b * 255
       pixels[index + 1] = b * 255
